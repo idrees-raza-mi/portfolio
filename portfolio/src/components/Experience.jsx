@@ -13,8 +13,8 @@ const jobs = [
     ],
   },
   {
-    company: 'PakiShip',
-    role: 'Lead Developer @ PakiShip',
+    company: 'Pakistan Shipment',
+    role: 'Lead Developer @ PakistanShipment',
     period: 'Jun 2023 – Present',
     bullets: [
       'Architected and built a Pakistan-focused shipping aggregator platform from the ground up.',

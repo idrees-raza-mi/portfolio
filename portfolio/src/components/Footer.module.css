@@ -87,7 +87,7 @@
   word-break: break-all;
   transition: opacity 0.2s;
 }
-.emailLink:hover { opacity: 1; }
+.emailLink:hover { opacity: 1;color: #185fa5; }
 
 /* Social buttons */
 .socials {

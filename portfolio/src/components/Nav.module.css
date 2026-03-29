@@ -1,39 +1,232 @@
+/* ── NAV BAR ── */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 clamp(1rem, 4vw, 3rem); height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+  height: 60px;
   background: var(--nav-bg);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
   transition: background 0.3s, border-color 0.3s;
 }
+
 .logo {
-  font-size: 14px; font-weight: 700; letter-spacing: -0.3px; color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  justify-self: start;
 }
-.right {
-  display: flex; align-items: center; gap: clamp(1rem, 3vw, 2rem);
-}
+
 .links {
-  display: flex; gap: clamp(0.8rem, 2.5vw, 2rem);
+  display: flex;
+  gap: clamp(0.8rem, 2.5vw, 2rem);
+  justify-self: center;
 }
+
 .links a {
-  font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
 }
-.links a:hover { color: #185FA5; }
 
-.toggle {
-  padding: 5px 14px; border-radius: 20px;
-  border: 1.5px solid #185FA5;
-  background: transparent; color: #185FA5;
-  font-size: 13px; font-weight: 600; cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+.links a:hover {
+  color: #185FA5;
+}
+
+/* ── CHAT BUTTON — top-right inside nav ── */
+.chatWrap {
+  justify-self: end;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Tooltip slides in from the right, appears to the LEFT of button */
+.chatTooltip {
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
   white-space: nowrap;
-}
-.toggle:hover {
-  background: #185FA5; color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  background: #25D366;
+  padding: 5px 12px;
+  border-radius: 20px;
+  box-shadow: 0 3px 12px rgba(37, 211, 102, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
-@media (max-width: 480px) {
-  .links a { font-size: 11px; }
-  .toggle { font-size: 11px; padding: 4px 10px; }
+/* little arrow pointing right toward button */
+.chatTooltip::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-left-color: #25D366;
+  border-right: 0;
+}
+
+.chatWrap:hover .chatTooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.chatBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.chatBtn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.5);
+}
+
+/* ── STICKY THEME TOGGLE — bottom-left ── */
+.themeWrap {
+  position: fixed;
+  bottom: 28px;
+  left: 20px;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* Quote — sits above the button, auto shows/hides */
+.themeQuote {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--nav-bg);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 12px;
+  border-radius: 10px;
+  white-space: nowrap;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.themeQuote span {
+  opacity: 0.6;
+  font-size: 11px;
+}
+
+/* small arrow pointing down toward button */
+.themeQuote::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 16px;
+  width: 10px;
+  height: 10px;
+  background: var(--nav-bg);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transform: rotate(45deg);
+}
+
+.quoteVisible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.themeBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid #185FA5;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  color: #185FA5;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s, color 0.2s;
+}
+
+.themeBtn:hover {
+  background: #185FA5;
+  color: #fff;
+}
+
+/* Shake — applied via class when quote is visible */
+.shaking {
+  animation: shake 0.6s ease-in-out;
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  15% {
+    transform: rotate(-14deg);
+  }
+
+  30% {
+    transform: rotate(14deg);
+  }
+
+  45% {
+    transform: rotate(-10deg);
+  }
+
+  60% {
+    transform: rotate(10deg);
+  }
+
+  75% {
+    transform: rotate(-5deg);
+  }
+
+  90% {
+    transform: rotate(5deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .nav {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .links {
+    display: none;
+  }
 }

@@ -13,7 +13,7 @@ export default function Footer() {
     const el = footerRef.current;
     if (!el) return;
 
-    const cols   = el.querySelectorAll('[data-col]');
+    const cols = el.querySelectorAll('[data-col]');
     const bottom = el.querySelector('[data-bottom]');
 
     // Replay animation every time footer enters viewport
@@ -71,9 +71,9 @@ export default function Footer() {
         {/* Contact & Social */}
         <div data-col className={styles.col}>
           <h4 className={styles.colHead}>Get in Touch</h4>
-          <a href="mailto:hello@muhammadidreesraza.com" className={styles.emailLink}>
+          <a href="mailto:hello@razaidrees.m@gmail.com" className={styles.emailLink}>
             <FiMail size={13} style={{ marginRight: 6, verticalAlign: 'middle', flexShrink: 0 }} />
-            hello@muhammadidreesraza.com
+            hello@razaidrees.m@gmail.com
           </a>
           <div className={styles.socials}>
             <a
