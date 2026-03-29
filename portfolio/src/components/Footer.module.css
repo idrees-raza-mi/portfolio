@@ -67,10 +67,15 @@
   color: var(--text);
   text-decoration: none;
   opacity: 0.75;
-  transition: opacity 0.2s;
+  display: inline-block;
+  transition: color 0.2s, transform 0.2s, opacity 0.2s;
 }
 
-.list a:hover { opacity: 1; }
+.list a:hover {
+  color: #3C3489;
+  opacity: 1;
+  transform: translateX(5px);
+}
 
 .emailLink {
   display: flex;

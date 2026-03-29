@@ -22,7 +22,7 @@
   will-change: transform;
 }
 .placeholder {
-  height: 148px;
+  height: 175px;
 }
 
 @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }

@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Idrees Raza — Full Stack Developer</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* ── THEME VARIABLES ── */
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #fafafa;
+      --text: #1a1a1a;
+      --text-muted: #666;
+      --text-dim: #999;
+      --border: rgba(0, 0, 0, 0.06);
+      --nav-bg: rgba(255, 255, 255, 0.85);
+      --skill-track: #ebebeb;
+      --about-bio: #444;
+      --footer-text: #ccc;
+      --footer-border: #f0f0f0;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0d0d0d;
+      --bg-alt: #141414;
+      --text: #f0f0f0;
+      --text-muted: #aaa;
+      --text-dim: #666;
+      --border: rgba(255, 255, 255, 0.07);
+      --nav-bg: rgba(13, 13, 13, 0.88);
+      --skill-track: #252525;
+      --about-bio: #bbb;
+      --footer-text: #555;
+      --footer-border: #222;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      height: 60px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .nav-logo {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--text);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 3vw, 2rem);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(1rem, 2.5vw, 2rem);
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #185FA5;
+    }
+
+    /* ── DARK MODE TOGGLE ── */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 500;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .theme-toggle:hover {
+      border-color: #185FA5;
+      color: #185FA5;
+    }
+
+    .theme-icon-light {
+      display: inline;
+    }
+
+    .theme-icon-dark {
+      display: none;
+    }
+
+    [data-theme="dark"] .theme-icon-light {
+      display: none;
+    }
+
+    [data-theme="dark"] .theme-icon-dark {
+      display: inline;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 60px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .hero-name {
+      font-size: clamp(24px, 6vw, 64px);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: clamp(-0.5px, -0.03em, -2px);
+      margin-bottom: 8px;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .hero-sub {
+      font-size: clamp(13px, 2vw, 16px);
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .flip-status {
+      font-size: 11px;
+      color: var(--text-dim);
+      height: 18px;
+      margin-bottom: 2.5rem;
+      transition: opacity 0.3s;
+    }
+
+    /* ── STACK CONTAINER ── */
+    .stack-wrap {
+      position: relative;
+      width: min(260px, 72vw);
+      height: min(168px, 46vw);
+      margin-bottom: 2.5rem;
+    }
+
+    .stack-card {
+      position: absolute;
+      width: min(220px, 60vw);
+      height: min(148px, 40vw);
+      animation: float 3s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .stack-card:nth-child(1) {
+      top: 0px;
+      left: 0px;
+      z-index: 8;
+      animation-delay: 0s;
+    }
+
+    .stack-card:nth-child(2) {
+      top: 5px;
+      left: 5px;
+      z-index: 7;
+      animation-delay: 0.15s;
+    }
+
+    .stack-card:nth-child(3) {
+      top: 10px;
+      left: 10px;
+      z-index: 6;
+      animation-delay: 0.3s;
+    }
+
+    .stack-card:nth-child(4) {
+      top: 15px;
+      left: 15px;
+      z-index: 5;
+      animation-delay: 0.45s;
+    }
+
+    .stack-card:nth-child(5) {
+      top: 20px;
+      left: 20px;
+      z-index: 4;
+      animation-delay: 0.6s;
+    }
+
+    .stack-card:nth-child(6) {
+      top: 25px;
+      left: 25px;
+      z-index: 3;
+      animation-delay: 0.75s;
+    }
+
+    .stack-card:nth-child(7) {
+      top: 30px;
+      left: 30px;
+      z-index: 2;
+      animation-delay: 0.9s;
+    }
+
+    .stack-card:nth-child(8) {
+      top: 35px;
+      left: 35px;
+      z-index: 1;
+      animation-delay: 1.05s;
+    }
+
+    .stack-card.flipping {
+      animation: none;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* ── FLIP CARD ── */
+    .flip-perspective {
+      width: 100%;
+      height: 100%;
+      perspective: 900px;
+    }
+
+    .flip-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
+      will-change: transform;
+    }
+
+    .flip-inner.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flip-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .flip-front {
+      background: #185FA5;
+    }
+
+    .flip-back {
+      background: #3C3489;
+      transform: rotateY(180deg);
+    }
+
+    /* ── MOCK UI (front face) ── */
+    .mock-bar {
+      height: 22px;
+      background: rgba(0, 0, 0, 0.18);
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 5px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .dot-r {
+      background: #ff5f57;
+    }
+
+    .dot-y {
+      background: #febc2e;
+    }
+
+    .dot-g {
+      background: #28c840;
+    }
+
+    .mock-body {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mock-nav {
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.35);
+      width: 85%;
+    }
+
+    .mock-hero-block {
+      height: 28px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 5px;
+    }
+
+    .mock-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+    }
+
+    .mock-block {
+      height: 18px;
+      background: rgba(255, 255, 255, 0.22);
+      border-radius: 4px;
+    }
+
+    .mock-footer {
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.18);
+      width: 60%;
+    }
+
+    .screen-label {
+      position: absolute;
+      bottom: 6px;
+      right: 8px;
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+    }
+
+    /* ── MOCK TERMINAL (back face) ── */
+    .term-bar {
+      height: 22px;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 5px;
+    }
+
+    .term-body {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .term-line {
+      height: 5px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .term-line.green {
+      background: rgba(100, 220, 130, 0.55);
+    }
+
+    .term-line.cyan {
+      background: rgba(80, 200, 220, 0.55);
+    }
+
+    .term-line.w90 {
+      width: 90%;
+    }
+
+    .term-line.w75 {
+      width: 75%;
+    }
+
+    .term-line.w60 {
+      width: 60%;
+    }
+
+    .term-line.w80 {
+      width: 80%;
+    }
+
+    .term-line.w50 {
+      width: 50%;
+    }
+
+    .term-line.w40 {
+      width: 40%;
+    }
+
+    .term-line.w70 {
+      width: 70%;
+    }
+
+    .term-text {
+      font-size: 7px;
+      color: rgba(100, 220, 130, 0.85);
+      font-family: monospace;
+      line-height: 1.6;
+      padding: 8px 10px;
+    }
+
+    .term-text span {
+      display: block;
+    }
+
+    .term-text .dim {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .term-text .cyan {
+      color: rgba(80, 200, 220, 0.85);
+    }
+
+    /* ── SCROLL HINT ── */
+    .scroll-hint {
+      font-size: 12px;
+      color: var(--text-dim);
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        opacity: 0.4;
+        transform: translateY(0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateY(6px);
+      }
+    }
+
+    /* ── PROJECTS ── */
+    #projects {
+      padding: 6rem clamp(1rem, 3vw, 2rem) 4rem;
+      background: var(--bg-alt);
+      transition: background 0.3s;
+    }
+
+    .section-title {
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      text-align: center;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .section-sub {
+      font-size: 13px;
+      color: var(--text-dim);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .grid-placeholder {
+      height: 180px;
+      border-radius: 12px;
+      visibility: hidden;
+    }
+
+    /* ── PROJECT FLIP CARDS ── */
+    .proj-card-wrap {
+      perspective: 900px;
+      height: 180px;
+      cursor: pointer;
+    }
+
+    .proj-card-inner {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      will-change: transform;
+    }
+
+    .proj-card-wrap:hover .proj-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .proj-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .proj-front {
+      background: #185FA5;
+    }
+
+    .proj-back {
+      background: #3C3489;
+      transform: rotateY(180deg);
+    }
+
+    .proj-label {
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 1.5px;
+    }
+
+    .proj-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      margin: 6px 0 4px;
+    }
+
+    .proj-desc {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .proj-tag {
+      font-size: 9px;
+      background: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.9);
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: 6rem clamp(1rem, 4vw, 2rem);
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    #about h2 {
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .about-meta {
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .about-bio {
+      font-size: 15px;
+      color: var(--about-bio);
+      line-height: 1.8;
+    }
+
+    /* ── SKILLS ── */
+    #skills {
+      padding: 5rem clamp(1rem, 3vw, 2rem);
+      background: var(--bg-alt);
+      transition: background 0.3s;
+    }
+
+    .skills-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 4rem;
+    }
+
+    .skill-group {
+      margin-bottom: 2.5rem;
+    }
+
+    .skill-group-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: #185FA5;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-row {
+      margin-bottom: 14px;
+    }
+
+    .skill-label-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .skill-name {
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .skill-pct {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .skill-track {
+      height: 4px;
+      background: var(--skill-track);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .skill-bar {
+      height: 100%;
+      width: 0;
+      border-radius: 2px;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .skill-bar.frontend {
+      background: #185FA5;
+    }
+
+    .skill-bar.backend {
+      background: #3C3489;
+    }
+
+    .skill-bar.shopify {
+      background: #185FA5;
+    }
+
+    .skill-bar.tools {
+      background: #3C3489;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 6rem clamp(1rem, 4vw, 2rem);
+      text-align: center;
+    }
+
+    #contact h2 {
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    #contact .contact-sub {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-email {
+      font-size: 15px;
+      color: #185FA5;
+      margin-bottom: 2rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .contact-email:hover {
+      text-decoration: underline;
+    }
+
+    .contact-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-linkedin {
+      background: #185FA5;
+      color: #fff;
+    }
+
+    .btn-linkedin:hover {
+      background: #14508d;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(24, 95, 165, 0.3);
+    }
+
+    .btn-github {
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    .btn-github:hover {
+      background: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 12px;
+      color: var(--footer-text);
+      border-top: 1px solid var(--footer-border);
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .grid-placeholder {
+        height: 160px;
+      }
+
+      .proj-card-wrap {
+        height: 160px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+
+      .stack-card:nth-child(n+5) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-placeholder {
+        height: 180px;
+      }
+
+      .proj-card-wrap {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">MIR</span>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-icon-light">☀ Light</span>
+        <span class="theme-icon-dark">☾ Dark</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <p class="hero-tag">Full Stack Developer</p>
+    <h1 class="hero-name">Muhammad Idrees Raza</h1>
+    <p class="hero-sub">Building production-ready web &amp; mobile applications</p>
+    <p class="flip-status" id="flip-status">frontend screens</p>
+
+    <div class="stack-wrap" id="stack-wrap">
+
+      <!-- Card 1 -->
+      <div class="stack-card" id="sc-0">
+        <div class="flip-perspective">
+          <div class="flip-inner" id="fi-0">
+            <div class="flip-face flip-front">
+              <div class="mock-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="mock-body">
+                <div class="mock-nav"></div>
+                <div class="mock-hero-block"></div>
+                <div class="mock-grid">
+                  <div class="mock-block"></div>
+                  <div class="mock-block"></div>
+                </div>
+                <div class="mock-footer"></div>
+              </div>
+              <span class="screen-label">FRONTEND</span>
+            </div>
+            <div class="flip-face flip-back">
+              <div class="term-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="term-text">
+                <span class="cyan">GET /api/projects 200</span>
+                <span class="dim">POST /auth/login 201</span>
+                <span class="green">Connected to MongoDB</span>
+                <span class="dim">Server running :3000</span>
+                <span class="cyan">Webhook received ✓</span>
+              </div>
+              <span class="screen-label">BACKEND</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="stack-card" id="sc-1">
+        <div class="flip-perspective">
+          <div class="flip-inner" id="fi-1">
+            <div class="flip-face flip-front">
+              <div class="mock-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="mock-body">
+                <div class="mock-nav" style="width:70%"></div>
+                <div class="mock-hero-block"></div>
+                <div class="mock-grid">
+                  <div class="mock-block"></div>
+                  <div class="mock-block"></div>
+                </div>
+                <div class="mock-footer" style="width:45%"></div>
+              </div>
+              <span class="screen-label">FRONTEND</span>
+            </div>
+            <div class="flip-face flip-back">
+              <div class="term-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="term-text">
+                <span class="dim">GET /api/orders 200</span>
+                <span class="cyan">POST /auth/token</span>
+                <span class="green">JWT verified ✓</span>
+                <span class="dim">Cloudinary upload OK</span>
+                <span class="cyan">Rate limit: 98/100</span>
+              </div>
+              <span class="screen-label">BACKEND</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="stack-card" id="sc-2">
+        <div class="flip-perspective">
+          <div class="flip-inner" id="fi-2">
+            <div class="flip-face flip-front">
+              <div class="mock-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="mock-body">
+                <div class="mock-nav" style="width:90%"></div>
+                <div class="mock-hero-block"></div>
+                <div class="mock-grid">
+                  <div class="mock-block"></div>
+                  <div class="mock-block"></div>
+                </div>
+                <div class="mock-footer" style="width:55%"></div>
+              </div>
+              <span class="screen-label">FRONTEND</span>
+            </div>
+            <div class="flip-face flip-back">
+              <div class="term-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="term-text">
+                <span class="green">Stripe webhook OK</span>
+                <span class="dim">GET /drivers/list 200</span>
+                <span class="cyan">Socket connected</span>
+                <span class="dim">Multer: file saved</span>
+                <span class="green">Deployment live ✓</span>
+              </div>
+              <span class="screen-label">BACKEND</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="stack-card" id="sc-3">
+        <div class="flip-perspective">
+          <div class="flip-inner" id="fi-3">
+            <div class="flip-face flip-front">
+              <div class="mock-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="mock-body">
+                <div class="mock-nav" style="width:75%"></div>
+                <div class="mock-hero-block"></div>
+                <div class="mock-grid">
+                  <div class="mock-block"></div>
+                  <div class="mock-block"></div>
+                </div>
+                <div class="mock-footer" style="width:50%"></div>
+              </div>
+              <span class="screen-label">FRONTEND</span>
+            </div>
+            <div class="flip-face flip-back">
+              <div class="term-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="term-text">
+                <span class="cyan">POST /events/create</span>
+                <span class="green">Payout sent ✓</span>
+                <span class="dim">bcrypt hash OK</span>
+                <span class="cyan">Leopards API: synced</span>
+                <span class="dim">MongoDB: 4 docs saved</span>
+              </div>
+              <span class="screen-label">BACKEND</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="stack-card" id="sc-4">
+        <div class="flip-perspective">
+          <div class="flip-inner" id="fi-4">
+            <div class="flip-face flip-front">
+              <div class="mock-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="mock-body">
+                <div class="mock-nav" style="width:80%"></div>
+                <div class="mock-hero-block"></div>
+                <div class="mock-grid">
+                  <div class="mock-block"></div>
+                  <div class="mock-block"></div>
+                </div>
+                <div class="mock-footer" style="width:40%"></div>
+              </div>
+              <span class="screen-label">FRONTEND</span>
+            </div>
+            <div class="flip-face flip-back">
+              <div class="term-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="term-text">
+                <span class="dim">Metafield updated</span>
+                <span class="green">Theme published ✓</span>
+                <span class="cyan">GET /shop/products</span>
+                <span class="dim">Webhook: order/paid</span>
+                <span class="green">Admin API 200 OK</span>
+              </div>
+              <span class="screen-label">BACKEND</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="stack-card" id="sc-5">
+        <div class="flip-perspective">
+          <div class="flip-inner" id="fi-5">
+            <div class="flip-face flip-front">
+              <div class="mock-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="mock-body">
+                <div class="mock-nav" style="width:65%"></div>
+                <div class="mock-hero-block"></div>
+                <div class="mock-grid">
+                  <div class="mock-block"></div>
+                  <div class="mock-block"></div>
+                </div>
+                <div class="mock-footer" style="width:70%"></div>
+              </div>
+              <span class="screen-label">FRONTEND</span>
+            </div>
+            <div class="flip-face flip-back">
+              <div class="term-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="term-text">
+                <span class="cyan">Refresh token issued</span>
+                <span class="green">Role: admin verified</span>
+                <span class="dim">bcrypt rounds: 12</span>
+                <span class="cyan">Session stored</span>
+                <span class="dim">GET /user/me 200</span>
+              </div>
+              <span class="screen-label">BACKEND</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="stack-card" id="sc-6">
+        <div class="flip-perspective">
+          <div class="flip-inner" id="fi-6">
+            <div class="flip-face flip-front">
+              <div class="mock-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="mock-body">
+                <div class="mock-nav" style="width:88%"></div>
+                <div class="mock-hero-block"></div>
+                <div class="mock-grid">
+                  <div class="mock-block"></div>
+                  <div class="mock-block"></div>
+                </div>
+                <div class="mock-footer" style="width:35%"></div>
+              </div>
+              <span class="screen-label">FRONTEND</span>
+            </div>
+            <div class="flip-face flip-back">
+              <div class="term-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="term-text">
+                <span class="green">Rate limit OK</span>
+                <span class="dim">Morgan: [GET] /api</span>
+                <span class="cyan">200 ms response</span>
+                <span class="dim">Pagination applied</span>
+                <span class="green">Modular route ✓</span>
+              </div>
+              <span class="screen-label">BACKEND</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="stack-card" id="sc-7">
+        <div class="flip-perspective">
+          <div class="flip-inner" id="fi-7">
+            <div class="flip-face flip-front">
+              <div class="mock-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="mock-body">
+                <div class="mock-nav" style="width:72%"></div>
+                <div class="mock-hero-block"></div>
+                <div class="mock-grid">
+                  <div class="mock-block"></div>
+                  <div class="mock-block"></div>
+                </div>
+                <div class="mock-footer" style="width:48%"></div>
+              </div>
+              <span class="screen-label">FRONTEND</span>
+            </div>
+            <div class="flip-face flip-back">
+              <div class="term-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+              </div>
+              <div class="term-text">
+                <span class="cyan">Multer: image saved</span>
+                <span class="green">Cloudinary CDN ✓</span>
+                <span class="dim">POST /portfolio/add</span>
+                <span class="cyan">Admin authenticated</span>
+                <span class="dim">MongoDB updated</span>
+              </div>
+              <span class="screen-label">BACKEND</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /stack-wrap -->
+
+    <p class="scroll-hint">scroll down ↓</p>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">Hover any card to flip to backend view</p>
+
+    <div class="projects-grid" id="projects-grid">
+
+      <!-- 8 invisible placeholders — cards fly here on scroll -->
+      <div class="grid-placeholder" id="ph-0"></div>
+      <div class="grid-placeholder" id="ph-1"></div>
+      <div class="grid-placeholder" id="ph-2"></div>
+      <div class="grid-placeholder" id="ph-3"></div>
+      <div class="grid-placeholder" id="ph-4"></div>
+      <div class="grid-placeholder" id="ph-5"></div>
+      <div class="grid-placeholder" id="ph-6"></div>
+      <div class="grid-placeholder" id="ph-7"></div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About</h2>
+    <p class="about-meta">Layyah, Punjab, Pakistan</p>
+    <h3 style="font-size:20px;font-weight:600;margin-bottom:12px;color:var(--text);">Muhammad Idrees Raza</h3>
+    <p class="about-bio">
+      Full stack developer specializing in building production-ready web and mobile applications.
+      Experienced with the Node.js + MongoDB backend ecosystem, React and React Native on the frontend,
+      and the Shopify app development platform. Currently building PakiShip and working deep in the Shopify ecosystem.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div style="max-width:900px;margin:0 auto;padding:5rem 2rem;">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-sub">Animated on scroll</p>
+
+      <div class="skills-grid">
+        <!-- Frontend -->
+        <div class="skill-group">
+          <p class="skill-group-title" style="color:#185FA5;">Frontend</p>
+          <div class="skill-row" data-skill="frontend" data-pct="90">
+            <div class="skill-label-row"><span class="skill-name">HTML &amp; CSS</span><span
+                class="skill-pct">90%</span></div>
+            <div class="skill-track">
+              <div class="skill-bar frontend"></div>
+            </div>
+          </div>
+          <div class="skill-row" data-skill="frontend" data-pct="88">
+            <div class="skill-label-row"><span class="skill-name">JavaScript</span><span class="skill-pct">88%</span>
+            </div>
+            <div class="skill-track">
+              <div class="skill-bar frontend"></div>
+            </div>
+          </div>
+          <div class="skill-row" data-skill="frontend" data-pct="85">
+            <div class="skill-label-row"><span class="skill-name">React</span><span class="skill-pct">85%</span></div>
+            <div class="skill-track">
+              <div class="skill-bar frontend"></div>
+            </div>
+          </div>
+          <div class="skill-row" data-skill="frontend" data-pct="80">
+            <div class="skill-label-row"><span class="skill-name">React Native</span><span class="skill-pct">80%</span>
+            </div>
+            <div class="skill-track">
+              <div class="skill-bar frontend"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="skill-group">
+          <p class="skill-group-title" style="color:#3C3489;">Backend</p>
+          <div class="skill-row" data-skill="backend" data-pct="85">
+            <div class="skill-label-row"><span class="skill-name">Node.js</span><span class="skill-pct">85%</span></div>
+            <div class="skill-track">
+              <div class="skill-bar backend"></div>
+            </div>
+          </div>
+          <div class="skill-row" data-skill="backend" data-pct="83">
+            <div class="skill-label-row"><span class="skill-name">Express.js</span><span class="skill-pct">83%</span>
+            </div>
+            <div class="skill-track">
+              <div class="skill-bar backend"></div>
+            </div>
+          </div>
+          <div class="skill-row" data-skill="backend" data-pct="80">
+            <div class="skill-label-row"><span class="skill-name">MongoDB</span><span class="skill-pct">80%</span></div>
+            <div class="skill-track">
+              <div class="skill-bar backend"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shopify -->
+        <div class="skill-group">
+          <p class="skill-group-title" style="color:#185FA5;">Shopify</p>
+          <div class="skill-row" data-skill="shopify" data-pct="78">
+            <div class="skill-label-row"><span class="skill-name">App Development</span><span
+                class="skill-pct">78%</span></div>
+            <div class="skill-track">
+              <div class="skill-bar shopify"></div>
+            </div>
+          </div>
+          <div class="skill-row" data-skill="shopify" data-pct="75">
+            <div class="skill-label-row"><span class="skill-name">Polaris &amp; Admin API</span><span
+                class="skill-pct">75%</span></div>
+            <div class="skill-track">
+              <div class="skill-bar shopify"></div>
+            </div>
+          </div>
+          <div class="skill-row" data-skill="shopify" data-pct="70">
+            <div class="skill-label-row"><span class="skill-name">Liquid &amp; Themes</span><span
+                class="skill-pct">70%</span></div>
+            <div class="skill-track">
+              <div class="skill-bar shopify"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="skill-group">
+          <p class="skill-group-title" style="color:#3C3489;">Tools</p>
+          <div class="skill-row" data-skill="tools" data-pct="85">
+            <div class="skill-label-row"><span class="skill-name">Git &amp; GitHub</span><span
+                class="skill-pct">85%</span></div>
+            <div class="skill-track">
+              <div class="skill-bar tools"></div>
+            </div>
+          </div>
+          <div class="skill-row" data-skill="tools" data-pct="75">
+            <div class="skill-label-row"><span class="skill-name">Vercel &amp; Cloudinary</span><span
+                class="skill-pct">75%</span></div>
+            <div class="skill-track">
+              <div class="skill-bar tools"></div>
+            </div>
+          </div>
+          <div class="skill-row" data-skill="tools" data-pct="70">
+            <div class="skill-label-row"><span class="skill-name">GSAP</span><span class="skill-pct">70%</span></div>
+            <div class="skill-track">
+              <div class="skill-bar tools"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Let's Build Something</h2>
+    <p class="contact-sub">Available for freelance projects and full-time roles</p>
+    <a href="mailto:hello@muhammadidreesraza.com" class="contact-email">
+      hello@muhammadidreesraza.com
+    </a>
+    <div class="contact-btns">
+      <a href="#" class="contact-btn btn-linkedin">LinkedIn ↗</a>
+      <a href="#" class="contact-btn btn-github">GitHub ↗</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Muhammad Idrees Raza. Built with HTML, CSS &amp; GSAP.</p>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ═══════════════════════════════════════════
+    // HERO FLIP ANIMATION (auto front → back → front loop)
+    // ═══════════════════════════════════════════
+    const flipInners = Array.from({ length: 8 }, (_, i) => document.getElementById('fi-' + i));
+    const stackCards = Array.from({ length: 8 }, (_, i) => document.getElementById('sc-' + i));
+    const statusEl = document.getElementById('flip-status');
+
+    let flipIdx = 0, goingBack = true;
+    let flipTimer = null;
+    let flipPaused = false;
+
+    function flipNext() {
+      if (flipPaused) return;
+      if (goingBack) {
+        stackCards[flipIdx].classList.add('flipping');
+        flipInners[flipIdx].classList.add('flipped');
+        flipIdx++;
+        if (flipIdx >= 8) {
+          goingBack = false; flipIdx = 7;
+          statusEl.textContent = 'backend screens';
+          flipTimer = setTimeout(flipNext, 2500); return;
+        }
+      } else {
+        stackCards[flipIdx].classList.add('flipping');
+        flipInners[flipIdx].classList.remove('flipped');
+        const card = stackCards[flipIdx];
+        setTimeout(() => card.classList.remove('flipping'), 900);
+        flipIdx--;
+        if (flipIdx < 0) {
+          goingBack = true; flipIdx = 0;
+          statusEl.textContent = 'frontend screens';
+          flipTimer = setTimeout(flipNext, 2500); return;
+        }
+      }
+      flipTimer = setTimeout(flipNext, 600);
+    }
+    flipTimer = setTimeout(flipNext, 1000);
+
+    function pauseFlip() {
+      flipPaused = true;
+      clearTimeout(flipTimer);
+    }
+    function resumeFlip() {
+      if (!flipPaused) return;
+      flipPaused = false;
+      flipTimer = setTimeout(flipNext, 600);
+    }
+
+    // ═══════════════════════════════════════════
+    // PROJECT DATA
+    // ═══════════════════════════════════════════
+    const projects = [
+      {
+        name: 'PakiShip',
+        frontDesc: 'COD & courier management dashboard for Pakistan-based sellers',
+        frontTags: ['React', 'Shopify Polaris', 'Admin API'],
+        backDesc: 'Order sync engine with local courier integrations',
+        backTags: ['Node.js', 'Express', 'MongoDB', 'Leopards API']
+      },
+      {
+        name: 'Design Editor',
+        frontDesc: 'Product personalizer embedded live in Shopify storefront',
+        frontTags: ['React', 'Fabric.js', 'Canvas API'],
+        backDesc: 'Serverless asset and design metadata management',
+        backTags: ['Vercel Functions', 'Cloudinary', 'Metaobjects']
+      },
+      {
+        name: 'Driver Management System',
+        frontDesc: 'Mobile app for driver onboarding and document upload',
+        frontTags: ['React Native', 'Expo', 'AsyncStorage'],
+        backDesc: 'Admin panel for fleet approval and deployment',
+        backTags: ['Node.js', 'Express', 'MongoDB', 'JWT']
+      },
+      {
+        name: 'Event Platform (EVP)',
+        frontDesc: 'Ticket discovery, booking, and Stripe checkout',
+        frontTags: ['React', 'Stripe.js', 'Tailwind'],
+        backDesc: 'Multi-organizer payout and event management',
+        backTags: ['Node.js', 'MongoDB', 'Stripe Connect']
+      },
+      {
+        name: 'Shopify Store Builder',
+        frontDesc: 'Custom Shopify theme UI with product filtering',
+        frontTags: ['Liquid', 'JavaScript', 'CSS', 'Shopify CLI'],
+        backDesc: 'Metafield-driven dynamic content and app integration',
+        backTags: ['Shopify APIs', 'Webhooks', 'Metaobjects']
+      },
+      {
+        name: 'Auth Boilerplate',
+        frontDesc: 'Clean login/signup/reset UI with role-based access',
+        frontTags: ['React', 'React Router', 'Axios'],
+        backDesc: 'Secure token-based auth with refresh flow',
+        backTags: ['Node.js', 'Express', 'JWT', 'bcrypt', 'MongoDB']
+      },
+      {
+        name: 'REST API Toolkit',
+        frontDesc: 'API explorer interface for testing endpoints',
+        frontTags: ['React', 'Fetch API'],
+        backDesc: 'Modular REST API with rate limiting and logging',
+        backTags: ['Node.js', 'Express', 'Morgan', 'MongoDB']
+      },
+      {
+        name: 'Portfolio CMS',
+        frontDesc: 'Admin dashboard to manage portfolio projects dynamically',
+        frontTags: ['React', 'TailwindCSS'],
+        backDesc: 'Headless CMS with file upload support',
+        backTags: ['Node.js', 'Express', 'MongoDB', 'Multer', 'Cloudinary']
+      }
+    ];
+
+    // ═══════════════════════════════════════════
+    // BUILD PROJECT CARDS (initially hidden, positioned over stack)
+    // ═══════════════════════════════════════════
+    const projectCards = [];
+
+    projects.forEach((p, i) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'proj-card-wrap';
+      wrap.style.cssText = `
+    position: fixed; z-index: 200; width: 220px; height: 148px;
+    opacity: 0; pointer-events: none;
+    top: 0; left: 0;
+  `;
+
+      wrap.innerHTML = `
+    <div class="proj-card-inner" style="border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,0.13);">
+      <div class="proj-face proj-front">
+        <div>
+          <p class="proj-label">FRONTEND</p>
+          <p class="proj-name">${p.name}</p>
+          <p class="proj-desc">${p.frontDesc}</p>
+        </div>
+        <div class="proj-tags">${p.frontTags.map(t => `<span class="proj-tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="proj-face proj-back">
+        <div>
+          <p class="proj-label">BACKEND</p>
+          <p class="proj-name">${p.name}</p>
+          <p class="proj-desc">${p.backDesc}</p>
+        </div>
+        <div class="proj-tags">${p.backTags.map(t => `<span class="proj-tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>
+  `;
+
+      document.body.appendChild(wrap);
+      projectCards.push(wrap);
+    });
+
+    // ═══════════════════════════════════════════
+    // SCROLL ANIMATION — STACK → GRID
+    // Pure transform only — zero layout reflow per frame
+    // ═══════════════════════════════════════════
+    let scrollAnimSetup = false;
+
+    function setupScrollAnim() {
+      if (scrollAnimSetup) return;
+      scrollAnimSetup = true;
+
+      // Stop float while measuring
+      stackCards.forEach(c => { c.style.animationPlayState = 'paused'; });
+
+      const scrollY = window.scrollY;
+      const stackRects = stackCards.map(c => c.getBoundingClientRect());
+      const targetRects = Array.from({ length: 8 }, (_, i) =>
+        document.getElementById('ph-' + i).getBoundingClientRect()
+      );
+
+      // Size each project card to its final (grid) size once — no resize during scroll.
+      // Place at grid position in document coords, offset via transform to stack position.
+      projectCards.forEach((card, i) => {
+        const tr = targetRects[i];
+        const sr = stackRects[i];
+
+        card.style.position = 'absolute';
+        card.style.width = tr.width + 'px';
+        card.style.height = tr.height + 'px';
+        card.style.top = (tr.top + scrollY) + 'px';
+        card.style.left = tr.left + 'px';
+        card.style.opacity = '0';
+        card.style.pointerEvents = 'none';
+
+        const dx = (sr.left + sr.width / 2) - (tr.left + tr.width / 2);
+        const dy = (sr.top + sr.height / 2) - (tr.top + tr.height / 2);
+        card.style.transform = `translate(${dx}px, ${dy}px)`;
+        card._dx = dx;
+        card._dy = dy;
+      });
+
+      ScrollTrigger.create({
+        trigger: '#projects',
+        start: 'top 80%',
+        end: 'top 20%',
+        scrub: 1.2,
+        onUpdate(self) {
+          const prog = self.progress;
+
+          // Cross-fade: stack cards out, project cards in
+          const stackOpacity = Math.max(0, 1 - prog * 8);   // fades out in first 12% of scroll
+          const cardOpacity = Math.min(1, prog * 5);        // fades in quickly
+
+          stackCards.forEach(c => { c.style.opacity = stackOpacity; });
+          projectCards.forEach(c => { c.style.opacity = cardOpacity; });
+
+          // Stop float once we start moving
+          if (prog > 0.02) {
+            stackCards.forEach(c => { c.style.animation = 'none'; });
+            pauseFlip();
+          }
+
+          projectCards.forEach((card, i) => {
+            const delay = i * 0.08;
+            const p = Math.max(0, Math.min(1, (prog - delay * 0.3) / (1 - delay * 0.3)));
+            const eased = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
+            const x = card._dx * (1 - eased);
+            const y = card._dy * (1 - eased);
+            card.style.transform = `translate(${x}px, ${y}px)`;
+          });
+
+          const done = prog >= 0.98;
+          projectCards.forEach(c => { c.style.pointerEvents = done ? 'auto' : 'none'; });
+        },
+        // Scrolled back above trigger — restore hero
+        onLeaveBack() {
+          stackCards.forEach(c => {
+            c.style.opacity = '1';
+            c.style.animation = 'float 3s ease-in-out infinite';
+            // restore individual delays
+            const delays = [0, .15, .3, .45, .6, .75, .9, 1.05];
+            stackCards.forEach((sc, j) => { sc.style.animationDelay = delays[j] + 's'; });
+          });
+          projectCards.forEach(c => {
+            c.style.opacity = '0';
+            c.style.pointerEvents = 'none';
+          });
+          resumeFlip();
+        }
+      });
+    }
+
+    ScrollTrigger.create({
+      trigger: '#projects',
+      start: 'top 90%',
+      once: true,
+      onEnter: setupScrollAnim
+    });
+
+    // ═══════════════════════════════════════════
+    // SKILLS — Intersection Observer
+    // ═══════════════════════════════════════════
+    const skillSection = document.getElementById('skills');
+    const skillBars = document.querySelectorAll('.skill-bar');
+    let skillsAnimated = false;
+
+    const skillObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !skillsAnimated) {
+          skillsAnimated = true;
+          skillBars.forEach(bar => {
+            const row = bar.closest('.skill-row');
+            const pct = row.dataset.pct;
+            bar.style.width = pct + '%';
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    skillObs.observe(skillSection);
+
+    // ═══════════════════════════════════════════
+    // HERO entrance animation
+    // ═══════════════════════════════════════════
+    gsap.fromTo('.hero-tag', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: 'power2.out' });
+    gsap.fromTo('.hero-name', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.9, delay: 0.4, ease: 'power2.out' });
+    gsap.fromTo('.hero-sub', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.6, ease: 'power2.out' });
+    gsap.fromTo('.stack-wrap', { opacity: 0, y: 30, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 1, delay: 0.8, ease: 'power2.out' });
+    gsap.fromTo('.scroll-hint', { opacity: 0 }, { opacity: 1, duration: 0.6, delay: 1.6 });
+
+    // ═══════════════════════════════════════════
+    // DARK MODE TOGGLE
+    // ═══════════════════════════════════════════
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme) {
+      html.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      html.setAttribute('data-theme', 'dark');
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  </script>
+</body>
+
+</html>

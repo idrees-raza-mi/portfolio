@@ -1,9 +1,10 @@
 import { useRef } from 'react';
 import Nav      from './components/Nav';
 import Hero     from './components/Hero';
-import Projects from './components/Projects';
-import About    from './components/About';
-import Skills   from './components/Skills';
+import Projects   from './components/Projects';
+import About      from './components/About';
+import Experience from './components/Experience';
+import Skills     from './components/Skills';
 import Contact  from './components/Contact';
 import Footer   from './components/Footer';
 import useTheme from './hooks/useTheme';
@@ -28,6 +29,7 @@ export default function App() {
       <Projects stackRef={stackRef} stackCardRefs={stackCardRefs} flipControls={flipControls} />
 
       <About />
+      <Experience />
       <Skills />
       <Contact />
       <Footer />

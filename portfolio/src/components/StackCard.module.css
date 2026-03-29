@@ -1,7 +1,7 @@
 .card {
   position: absolute;
-  width: min(220px, 60vw);
-  height: min(148px, 40vw);
+  width: min(260px, 68vw);
+  height: min(175px, 46vw);
   will-change: transform;
   animation: cardFloat 3s ease-in-out infinite;
 }

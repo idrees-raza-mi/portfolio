@@ -23,8 +23,8 @@
 }
 .stackWrap {
   position: relative;
-  width: min(260px, 72vw);
-  height: min(168px, 46vw);
+  width: min(300px, 82vw);
+  height: min(215px, 57vw);
   margin-bottom: 2.5rem;
 }
 .scrollHint {
