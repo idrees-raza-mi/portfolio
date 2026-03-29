@@ -1,0 +1,68 @@
+const projects = [
+  {
+    id: 1,
+    name: 'PakiShip',
+    frontDesc: 'COD & courier management dashboard for Pakistan-based sellers',
+    frontTags: ['React', 'Shopify Polaris', 'Admin API'],
+    backDesc: 'Order sync engine with local courier integrations',
+    backTags: ['Node.js', 'Express', 'MongoDB', 'Leopards API'],
+  },
+  {
+    id: 2,
+    name: 'Design Editor',
+    frontDesc: 'Product personalizer embedded live in Shopify storefront',
+    frontTags: ['React', 'Fabric.js', 'Canvas API'],
+    backDesc: 'Serverless asset and design metadata management',
+    backTags: ['Vercel Functions', 'Cloudinary', 'Metaobjects'],
+  },
+  {
+    id: 3,
+    name: 'Driver Management System',
+    frontDesc: 'Mobile app for driver onboarding and document upload',
+    frontTags: ['React Native', 'Expo', 'AsyncStorage'],
+    backDesc: 'Admin panel for fleet approval and deployment',
+    backTags: ['Node.js', 'Express', 'MongoDB', 'JWT'],
+  },
+  {
+    id: 4,
+    name: 'Event Platform (EVP)',
+    frontDesc: 'Ticket discovery, booking, and Stripe checkout',
+    frontTags: ['React', 'Stripe.js', 'Tailwind'],
+    backDesc: 'Multi-organizer payout and event management',
+    backTags: ['Node.js', 'MongoDB', 'Stripe Connect'],
+  },
+  {
+    id: 5,
+    name: 'Shopify Store Builder',
+    frontDesc: 'Custom Shopify theme UI with product filtering',
+    frontTags: ['Liquid', 'JavaScript', 'CSS', 'Shopify CLI'],
+    backDesc: 'Metafield-driven dynamic content and app integration',
+    backTags: ['Shopify APIs', 'Webhooks', 'Metaobjects'],
+  },
+  {
+    id: 6,
+    name: 'Auth Boilerplate',
+    frontDesc: 'Clean login/signup/reset UI with role-based access',
+    frontTags: ['React', 'React Router', 'Axios'],
+    backDesc: 'Secure token-based auth with refresh flow',
+    backTags: ['Node.js', 'Express', 'JWT', 'bcrypt', 'MongoDB'],
+  },
+  {
+    id: 7,
+    name: 'REST API Toolkit',
+    frontDesc: 'API explorer interface for testing endpoints',
+    frontTags: ['React', 'Fetch API'],
+    backDesc: 'Modular REST API with rate limiting and logging',
+    backTags: ['Node.js', 'Express', 'Morgan', 'MongoDB'],
+  },
+  {
+    id: 8,
+    name: 'Portfolio CMS',
+    frontDesc: 'Admin dashboard to manage portfolio projects dynamically',
+    frontTags: ['React', 'TailwindCSS'],
+    backDesc: 'Headless CMS with file upload support',
+    backTags: ['Node.js', 'Express', 'MongoDB', 'Multer', 'Cloudinary'],
+  },
+];
+
+export default projects;

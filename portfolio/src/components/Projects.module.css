@@ -1,0 +1,30 @@
+.section {
+  padding: 6rem clamp(1rem,3vw,2rem) 4rem;
+  background: var(--bg-alt);
+  transition: background 0.3s;
+}
+.title {
+  font-size: clamp(20px,4vw,28px); font-weight: 700; letter-spacing: -0.5px;
+  text-align: center; margin-bottom: 5px; color: var(--text);
+}
+.sub {
+  font-size: 13px; color: var(--text-dim); text-align: center; margin-bottom: 3rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative; /* so z-index on cards works */
+}
+.cardWrap {
+  will-change: transform;
+}
+.placeholder {
+  height: 148px;
+}
+
+@media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px)  { .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+@media (max-width: 420px)  { .grid { grid-template-columns: 1fr; gap: 10px; } }

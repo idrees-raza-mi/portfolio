@@ -1,0 +1,15 @@
+/* Spans the full document from top — absolute children use document coordinates */
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Each flying card — sized + positioned via GSAP inline styles */
+.flyCard {
+  position: absolute;
+  will-change: transform;
+}

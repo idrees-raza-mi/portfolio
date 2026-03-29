@@ -1,0 +1,5 @@
+.section  { padding: 6rem clamp(1rem,4vw,2rem); max-width: 640px; margin: 0 auto; text-align: center; }
+.title    { font-size: clamp(20px,4vw,28px); font-weight: 700; letter-spacing: -0.5px; margin-bottom: 14px; color: var(--text); }
+.location { font-size: 11px; color: var(--text-dim); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.name     { font-size: clamp(16px,2.5vw,20px); font-weight: 600; margin-bottom: 12px; color: var(--text); }
+.bio      { font-size: clamp(13px,1.8vw,15px); color: var(--about-bio); line-height: 1.85; }
