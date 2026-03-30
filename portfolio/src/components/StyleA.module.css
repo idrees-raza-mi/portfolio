@@ -8,7 +8,7 @@
 }
 
 .front {
-  background: #0f0f13;
+  background: #1a1a2e;
 }
 
 .bar {
@@ -128,7 +128,7 @@
 .backContainer {
   width: 100%;
   height: 100%;
-  background: #0d0d1a;
+  background: #16162b;
   border-radius: 12px;
   overflow: hidden;
 }

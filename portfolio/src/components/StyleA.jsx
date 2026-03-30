@@ -2,11 +2,11 @@ import styles from './StyleA.module.css';
 
 export default function StyleA({ project, side }) {
   const accentColors = {
-    1: { primary: '#378ADD', secondary: '#0F6E56' },
-    2: { primary: '#6366f1', secondary: '#4f46e5' },
-    5: { primary: '#534AB7', secondary: '#185FA5' },
+    1: { primary: '#378ADD', secondary: '#0F6E56', bodyBg: '#252540', statBg: '#1e1e30' },
+    2: { primary: '#6366f1', secondary: '#4f46e5', bodyBg: '#252540', statBg: '#1e1e30' },
+    5: { primary: '#534AB7', secondary: '#185FA5', bodyBg: '#252540', statBg: '#1e1e30' },
   };
-  const colors = accentColors[project.id] || { primary: '#378ADD', secondary: '#0F6E56' };
+  const colors = accentColors[project.id] || { primary: '#378ADD', secondary: '#0F6E56', bodyBg: '#252540', statBg: '#1e1e30' };
 
   if (side === 'back') {
     return (

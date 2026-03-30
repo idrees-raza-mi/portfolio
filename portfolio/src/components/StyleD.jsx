@@ -2,8 +2,8 @@ import styles from './StyleD.module.css';
 
 export default function StyleD({ project, side }) {
   const colorSchemes = {
-    4: { primary: '#378ADD', secondary: '#7F77DD', backBg: '#0c0820', backCode: '#0d0b1a' },
-    8: { primary: '#D85A30', secondary: '#993C1D', backBg: '#1a0800', backCode: '#100500' },
+    4: { primary: '#378ADD', secondary: '#7F77DD', frontBg: '#1a1a1a', backBg: '#1e1e30', backCode: '#252540' },
+    8: { primary: '#D85A30', secondary: '#D85A30', frontBg: '#1a1a1a', backBg: '#251510', backCode: '#352015' },
   };
   const scheme = colorSchemes[project.id] || colorSchemes[4];
   const num = project.id === 4 ? '04' : '08';
@@ -31,7 +31,7 @@ export default function StyleD({ project, side }) {
   }
 
   return (
-    <div className={styles.front}>
+    <div className={styles.front} style={{ background: scheme.frontBg }}>
       <span className={styles.num}>{num}</span>
       <span className={styles.cat}>FRONTEND STACK</span>
       <span className={styles.name}>{project.name}</span>

@@ -8,10 +8,14 @@ import StyleD from './StyleD';
 import styles from './Hero.module.css';
 
 const styleComponents = {
-  A: StyleA,
-  B: StyleB,
-  C: StyleC,
-  D: StyleD,
+  1: StyleA,
+  5: StyleA,
+  2: StyleB,
+  6: StyleB,
+  3: StyleC,
+  7: StyleC,
+  4: StyleD,
+  8: StyleD,
 };
 
 function StackCard({ index, flipped, floatPaused, project, cardRef }) {

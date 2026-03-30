@@ -2,7 +2,7 @@ const projects = [
   {
     id: 1,
     name: 'PakiShip',
-    style: 'A',
+    style: 1,
     frontDesc: 'COD & courier management dashboard for Pakistan-based sellers',
     frontTags: ['React', 'Shopify Polaris', 'Admin API'],
     backDesc: 'Order sync engine with local courier integrations',
@@ -11,7 +11,7 @@ const projects = [
   {
     id: 2,
     name: 'Design Editor',
-    style: 'B',
+    style: 2,
     frontDesc: 'Product personalizer embedded live in Shopify storefront',
     frontTags: ['React', 'Fabric.js', 'Canvas API'],
     backDesc: 'Serverless asset and design metadata management',
@@ -20,7 +20,7 @@ const projects = [
   {
     id: 3,
     name: 'Driver Management System',
-    style: 'C',
+    style: 3,
     frontDesc: 'Mobile app for driver onboarding and document upload',
     frontTags: ['React Native', 'Expo', 'AsyncStorage'],
     backDesc: 'Admin panel for fleet approval and deployment',
@@ -29,7 +29,7 @@ const projects = [
   {
     id: 4,
     name: 'Event Platform (EVP)',
-    style: 'D',
+    style: 4,
     frontDesc: 'Ticket discovery, booking, and Stripe checkout',
     frontTags: ['React', 'Stripe.js', 'Tailwind'],
     backDesc: 'Multi-organizer payout and event management',
@@ -38,7 +38,7 @@ const projects = [
   {
     id: 5,
     name: 'Shopify Store Builder',
-    style: 'A',
+    style: 5,
     frontDesc: 'Custom Shopify theme UI with product filtering',
     frontTags: ['Liquid', 'JavaScript', 'CSS', 'Shopify CLI'],
     backDesc: 'Metafield-driven dynamic content and app integration',
@@ -47,7 +47,7 @@ const projects = [
   {
     id: 6,
     name: 'Auth Boilerplate',
-    style: 'B',
+    style: 6,
     frontDesc: 'Clean login/signup/reset UI with role-based access',
     frontTags: ['React', 'React Router', 'Axios'],
     backDesc: 'Secure token-based auth with refresh flow',
@@ -56,7 +56,7 @@ const projects = [
   {
     id: 7,
     name: 'REST API Toolkit',
-    style: 'C',
+    style: 7,
     frontDesc: 'API explorer interface for testing endpoints',
     frontTags: ['React', 'Fetch API'],
     backDesc: 'Modular REST API with rate limiting and logging',
@@ -65,7 +65,7 @@ const projects = [
   {
     id: 8,
     name: 'Portfolio CMS',
-    style: 'D',
+    style: 8,
     frontDesc: 'Admin dashboard to manage portfolio projects dynamically',
     frontTags: ['React', 'TailwindCSS'],
     backDesc: 'Headless CMS with file upload support',
