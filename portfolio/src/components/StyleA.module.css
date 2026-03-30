@@ -1,0 +1,148 @@
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.front {
+  background: #0f0f13;
+}
+
+.bar {
+  height: 22px;
+  background: #1c1c24;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  border-bottom: 0.5px solid #2a2a36;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.body {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav {
+  height: 20px;
+  background: #16213e;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 6px;
+}
+
+.ni {
+  height: 5px;
+  border-radius: 2px;
+  background: #378ADD;
+  opacity: 0.65;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.stat {
+  background: #141420;
+  border-radius: 5px;
+  padding: 5px 6px;
+}
+
+.snum {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.slbl {
+  font-size: 7px;
+  color: #3a3a50;
+  margin-top: 1px;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 2px;
+}
+
+.row {
+  height: 14px;
+  background: #141420;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 5px;
+}
+
+.badge {
+  height: 7px;
+  width: 24px;
+  border-radius: 10px;
+}
+
+.foot {
+  position: absolute;
+  bottom: 7px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pname {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+}
+
+.tags {
+  display: flex;
+  gap: 3px;
+}
+
+.tag {
+  font-size: 7px;
+  padding: 1px 5px;
+  border-radius: 8px;
+}
+
+.backContainer {
+  width: 100%;
+  height: 100%;
+  background: #0d0d1a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.termBody {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tl {
+  height: 4px;
+  border-radius: 2px;
+  background: #252535;
+  opacity: 0.75;
+}

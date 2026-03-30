@@ -1,7 +1,56 @@
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import StackCard from './StackCard';
+import projects from '../data/projects';
+import StyleA from './StyleA';
+import StyleB from './StyleB';
+import StyleC from './StyleC';
+import StyleD from './StyleD';
 import styles from './Hero.module.css';
+
+const styleComponents = {
+  A: StyleA,
+  B: StyleB,
+  C: StyleC,
+  D: StyleD,
+};
+
+function StackCard({ index, flipped, floatPaused, project, cardRef }) {
+  const StyleComponent = styleComponents[project.style] || StyleA;
+  
+  return (
+    <div
+      ref={cardRef}
+      className={`${styles.card} ${floatPaused ? styles.nofloat : ''}`}
+      style={{ animationDelay: `${index * 0.15}s` }}
+    >
+      <div className={styles.perspective}>
+        <div 
+          className={styles.inner}
+          style={{ 
+            transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+            transformStyle: 'preserve-3d',
+            transition: 'transform 0.75s cubic-bezier(0.4,0,0.2,1)'
+          }}
+        >
+          <div className={styles.face} style={{ backfaceVisibility: 'hidden' }}>
+            <StyleComponent project={project} side="front" />
+          </div>
+          <div className={styles.face} style={{ 
+            backfaceVisibility: 'hidden',
+            transform: 'rotateY(180deg)',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%'
+          }}>
+            <StyleComponent project={project} side="back" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Hero({ onStackReady, stackRef, stackCardRefs }) {
   const [flipped, setFlipped] = useState(Array(8).fill(false));
@@ -10,7 +59,6 @@ export default function Hero({ onStackReady, stackRef, stackCardRefs }) {
   const wrapRef  = useRef(null);
   const flipRef  = useRef({ idx: 0, goingBack: true, timer: null, paused: false });
 
-  // Expose pause/resume to parent (for scroll anim)
   useEffect(() => {
     if (onStackReady) onStackReady(wrapRef, {
       pause: () => {
@@ -69,7 +117,6 @@ export default function Hero({ onStackReady, stackRef, stackCardRefs }) {
     return () => clearTimeout(flipRef.current.timer);
   }, []);
 
-  // Hero entrance animation
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     tl.fromTo('.hero-tag',   { opacity:0, y:16 }, { opacity:1, y:0, duration:.7 }, 0.15)
@@ -87,13 +134,14 @@ export default function Hero({ onStackReady, stackRef, stackCardRefs }) {
       <p className={styles.status}>{status}</p>
 
       <div className={`stack-wrap ${styles.stackWrap}`} ref={el => { wrapRef.current = el; if (stackRef) stackRef.current = el; }}>
-        {Array.from({ length: 8 }, (_, i) => (
+        {projects.map((p, i) => (
           <StackCard
-            key={i}
+            key={p.id}
             index={i}
             flipped={flipped[i]}
             floatPaused={floatPaused}
-            ref={el => { if (stackCardRefs) stackCardRefs.current[i] = el; }}
+            project={p}
+            cardRef={el => { if (stackCardRefs) stackCardRefs.current[i] = el; }}
           />
         ))}
       </div>

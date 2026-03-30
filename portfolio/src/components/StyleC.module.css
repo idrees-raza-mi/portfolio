@@ -1,0 +1,192 @@
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.front {
+  background: #f8faff;
+  border: 0.5px solid #dde4f5;
+}
+
+.top {
+  height: 104px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.browser {
+  width: 130px;
+  background: white;
+  border-radius: 5px;
+  border: 0.5px solid #d1d9f0;
+  overflow: hidden;
+}
+
+.bbar {
+  height: 15px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 5px;
+}
+
+.bd {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+
+.bbody {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.bb {
+  height: 11px;
+  border-radius: 3px;
+  background: #eef1ff;
+}
+
+.bl {
+  height: 3px;
+  border-radius: 2px;
+  background: #d1d9f0;
+}
+
+.info {
+  padding: 10px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cat {
+  font-size: 8px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a1f3a;
+}
+
+.desc {
+  font-size: 9px;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.foot {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  padding: 0 12px 9px;
+}
+
+.ft {
+  font-size: 7px;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+.backContainer {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.scbTop {
+  height: 104px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.scbTerm {
+  width: 100%;
+  background: #0e1120;
+  border-radius: 5px;
+  border: 0.5px solid #252a45;
+  overflow: hidden;
+}
+
+.scbTbar {
+  height: 15px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 5px;
+}
+
+.scbTbody {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.scbTl {
+  height: 3px;
+  border-radius: 2px;
+}
+
+.scbInfo {
+  padding: 10px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scbCat {
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+.scbName {
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+}
+
+.scbDesc {
+  font-size: 9px;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.scbFoot {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  padding: 0 12px 9px;
+}
+
+.scbFt {
+  font-size: 7px;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
