@@ -3,7 +3,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import styles from './Nav.module.css';
 
 // Replace with your WhatsApp number (country code + number, no + or spaces)
-const WA_NUMBER = '77770306873';
+const WA_NUMBER = '77066513615';
 
 export default function Nav({ theme, onToggleTheme }) {
   const [showQuote, setShowQuote] = useState(false);
@@ -26,7 +26,7 @@ export default function Nav({ theme, onToggleTheme }) {
     <>
       <nav className={styles.nav}>
         {/* Logo — left */}
-        <span className={styles.logo}>MIR</span>
+        <a href="#hero" className={styles.logo}>MIR</a>
 
         {/* Links — center */}
         <div className={styles.links}>

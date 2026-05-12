@@ -9,8 +9,8 @@ export default function Contact() {
         hello@razaidrees.m@gmail.com
       </a>
       <div className={styles.btns}>
-        <a href="#" className={`${styles.btn} ${styles.li}`}>LinkedIn ↗</a>
-        <a href="#" className={`${styles.btn} ${styles.gh}`}>GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/idrees-raza-7781413bb" target="_blank" rel="noreferrer" className={`${styles.btn} ${styles.li}`}>LinkedIn ↗</a>
+        <a href="https://github.com/idrees-raza-mi" target="_blank" rel="noreferrer" className={`${styles.btn} ${styles.gh}`}>GitHub ↗</a>
       </div>
     </section>
   );

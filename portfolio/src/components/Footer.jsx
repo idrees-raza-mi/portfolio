@@ -87,7 +87,7 @@ export default function Footer() {
               <span>GitHub</span>
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/idrees-raza-7781413bb"
               target="_blank"
               rel="noreferrer"
               className={styles.socialBtn}
