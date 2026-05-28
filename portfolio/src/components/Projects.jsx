@@ -27,7 +27,9 @@ export default function Projects({ stackRef, stackCardRefs, flipControls }) {
       wrap.addEventListener('mouseleave', () => {
         wrap.querySelector('.proj-body-inner').style.transform = '';
       });
-      wrap.addEventListener('click', () => {
+      wrap.addEventListener('click', (e) => {
+        // Don't flip when clicking a link inside the card
+        if (e.target.closest('a')) return;
         const inner = wrap.querySelector('.proj-body-inner');
         const flipped = inner.style.transform === 'rotateY(180deg)';
         inner.style.transform = flipped ? '' : 'rotateY(180deg)';

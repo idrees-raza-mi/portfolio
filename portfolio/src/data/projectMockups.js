@@ -34,14 +34,24 @@ export function getBack(p) {
     8: { bg: '#0f1419', accent: '#06b6d4', tagBg: 'rgba(6,182,212,0.22)',  tagFg: '#67e8f9' },
   };
   const c = palettes[p.id] || palettes[1];
+
+  const linkBtn = (href, label, icon) => href
+    ? `<a href="${href}" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:3px;font-size:7.5px;font-weight:700;padding:3px 7px;border-radius:6px;background:${c.tagBg};color:${c.tagFg};text-decoration:none;border:1px solid ${c.accent}55;letter-spacing:0.3px;cursor:pointer;pointer-events:auto;">
+        <span style="font-size:8px;">${icon}</span>${label}
+       </a>`
+    : '';
+
+  const hasLinks = p.live || p.code;
+
   return `
     <div style="position:absolute;inset:0;background:${c.bg};padding:12px 13px;display:flex;flex-direction:column;color:#fff;">
       <span style="font-size:7px;letter-spacing:2.5px;color:${c.accent};font-weight:600;">TECH STACK</span>
       <span style="font-size:13px;font-weight:600;margin-top:4px;letter-spacing:-0.3px;">${p.name}</span>
       <span style="font-size:9px;line-height:1.55;color:rgba(255,255,255,0.55);margin-top:5px;flex:1;">${p.backDesc}</span>
-      <div style="display:flex;gap:3px;flex-wrap:wrap;">
+      <div style="display:flex;gap:3px;flex-wrap:wrap;margin-bottom:${hasLinks ? '6px' : '0'};">
         ${p.backTags.slice(0, 4).map(t => `<span style="font-size:7px;padding:2px 6px;border-radius:8px;background:${c.tagBg};color:${c.tagFg};font-weight:500;">${t}</span>`).join('')}
       </div>
+      ${hasLinks ? `<div style="display:flex;gap:5px;">${linkBtn(p.live, 'Live', '↗')}${linkBtn(p.code, 'Code', '⌥')}</div>` : ''}
     </div>`;
 }
 
