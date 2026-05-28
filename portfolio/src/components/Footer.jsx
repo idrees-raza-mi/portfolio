@@ -71,9 +71,9 @@ export default function Footer() {
         {/* Contact & Social */}
         <div data-col className={styles.col}>
           <h4 className={styles.colHead}>Get in Touch</h4>
-          <a href="mailto:hello@razaidrees.m@gmail.com" className={styles.emailLink}>
+          <a href="mailto:razaidrees.m@gmail.com" className={styles.emailLink}>
             <FiMail size={13} style={{ marginRight: 6, verticalAlign: 'middle', flexShrink: 0 }} />
-            hello@razaidrees.m@gmail.com
+            razaidrees.m@gmail.com
           </a>
           <div className={styles.socials}>
             <a

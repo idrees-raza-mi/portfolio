@@ -1,12 +1,18 @@
+// Each project supports optional `live` and `code` URLs.
+// Set them to a string to show the link button on the card back.
+// Leave as null to hide the button.
+
 const projects = [
   {
     id: 1,
-    name: 'PakiShip',
+    name: 'DevJour',
     style: 1,
-    frontDesc: 'COD & courier management dashboard for Pakistan-based sellers',
-    frontTags: ['React', 'Shopify Polaris', 'Admin API'],
-    backDesc: 'Order sync engine with local courier integrations',
-    backTags: ['Node.js', 'Express', 'MongoDB', 'Leopards API'],
+    frontDesc: 'Subscription management app embedded in Shopify admin',
+    frontTags: ['React', 'Shopify Polaris', 'App Bridge'],
+    backDesc: 'Recurring billing engine with Shopify Subscriptions API',
+    backTags: ['Node.js', 'Express', 'MongoDB', 'Shopify Billing API'],
+    live: null,
+    code: null,
   },
   {
     id: 2,
@@ -16,6 +22,8 @@ const projects = [
     frontTags: ['React', 'Fabric.js', 'Canvas API'],
     backDesc: 'Serverless asset and design metadata management',
     backTags: ['Vercel Functions', 'Cloudinary', 'Metaobjects'],
+    live: null,
+    code: null,
   },
   {
     id: 3,
@@ -25,6 +33,8 @@ const projects = [
     frontTags: ['React Native', 'Expo', 'AsyncStorage'],
     backDesc: 'Admin panel for fleet approval and deployment',
     backTags: ['Node.js', 'Express', 'MongoDB', 'JWT'],
+    live: null,
+    code: null,
   },
   {
     id: 4,
@@ -34,6 +44,8 @@ const projects = [
     frontTags: ['React', 'Stripe.js', 'Tailwind'],
     backDesc: 'Multi-organizer payout and event management',
     backTags: ['Node.js', 'MongoDB', 'Stripe Connect'],
+    live: null,
+    code: null,
   },
   {
     id: 5,
@@ -43,6 +55,8 @@ const projects = [
     frontTags: ['Liquid', 'JavaScript', 'CSS', 'Shopify CLI'],
     backDesc: 'Metafield-driven dynamic content and app integration',
     backTags: ['Shopify APIs', 'Webhooks', 'Metaobjects'],
+    live: null,
+    code: null,
   },
   {
     id: 6,
@@ -52,6 +66,8 @@ const projects = [
     frontTags: ['React', 'React Router', 'Axios'],
     backDesc: 'Secure token-based auth with refresh flow',
     backTags: ['Node.js', 'Express', 'JWT', 'bcrypt', 'MongoDB'],
+    live: null,
+    code: null,
   },
   {
     id: 7,
@@ -61,6 +77,8 @@ const projects = [
     frontTags: ['React', 'Fetch API'],
     backDesc: 'Modular REST API with rate limiting and logging',
     backTags: ['Node.js', 'Express', 'Morgan', 'MongoDB'],
+    live: null,
+    code: null,
   },
   {
     id: 8,
@@ -70,6 +88,8 @@ const projects = [
     frontTags: ['React', 'TailwindCSS'],
     backDesc: 'Headless CMS with file upload support',
     backTags: ['Node.js', 'Express', 'MongoDB', 'Multer', 'Cloudinary'],
+    live: null,
+    code: null,
   },
 ];
 

@@ -1,26 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import projects from '../data/projects';
-import StyleA from './StyleA';
-import StyleB from './StyleB';
-import StyleC from './StyleC';
-import StyleD from './StyleD';
+import { getFront, getBack } from '../data/projectMockups';
 import styles from './Hero.module.css';
 
-const styleComponents = {
-  1: StyleA,
-  5: StyleA,
-  2: StyleB,
-  6: StyleB,
-  3: StyleC,
-  7: StyleC,
-  4: StyleD,
-  8: StyleD,
-};
-
 function StackCard({ index, flipped, floatPaused, project, cardRef }) {
-  const StyleComponent = styleComponents[project.style] || StyleA;
-  
   return (
     <div
       ref={cardRef}
@@ -28,28 +12,32 @@ function StackCard({ index, flipped, floatPaused, project, cardRef }) {
       style={{ animationDelay: `${index * 0.15}s` }}
     >
       <div className={styles.perspective}>
-        <div 
+        <div
           className={styles.inner}
-          style={{ 
+          style={{
             transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
             transformStyle: 'preserve-3d',
-            transition: 'transform 0.75s cubic-bezier(0.4,0,0.2,1)'
+            transition: 'transform 0.75s cubic-bezier(0.4,0,0.2,1)',
           }}
         >
-          <div className={styles.face} style={{ backfaceVisibility: 'hidden' }}>
-            <StyleComponent project={project} side="front" />
-          </div>
-          <div className={styles.face} style={{ 
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%'
-          }}>
-            <StyleComponent project={project} side="back" />
-          </div>
+          <div
+            className={styles.face}
+            style={{ backfaceVisibility: 'hidden' }}
+            dangerouslySetInnerHTML={{ __html: getFront(project) }}
+          />
+          <div
+            className={styles.face}
+            style={{
+              backfaceVisibility: 'hidden',
+              transform: 'rotateY(180deg)',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+            }}
+            dangerouslySetInnerHTML={{ __html: getBack(project) }}
+          />
         </div>
       </div>
     </div>
