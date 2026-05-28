@@ -1,12 +1,12 @@
 const projects = [
   {
     id: 1,
-    name: 'PakiShip',
+    name: 'DevJour',
     style: 1,
-    frontDesc: 'COD & courier management dashboard for Pakistan-based sellers',
-    frontTags: ['React', 'Shopify Polaris', 'Admin API'],
-    backDesc: 'Order sync engine with local courier integrations',
-    backTags: ['Node.js', 'Express', 'MongoDB', 'Leopards API'],
+    frontDesc: 'Subscription management app embedded in Shopify admin',
+    frontTags: ['React', 'Shopify Polaris', 'App Bridge'],
+    backDesc: 'Recurring billing engine with Shopify Subscriptions API',
+    backTags: ['Node.js', 'Express', 'MongoDB', 'Shopify Billing API'],
   },
   {
     id: 2,

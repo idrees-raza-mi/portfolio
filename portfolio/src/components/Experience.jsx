@@ -13,13 +13,13 @@ const jobs = [
     ],
   },
   {
-    company: 'Pakistan Shipment',
-    role: 'Lead Developer @ PakistanShipment',
+    company: 'DevJour',
+    role: 'Full Stack Developer @ DevJour',
     period: 'Jun 2023 – Present',
     bullets: [
-      'Architected and built a Pakistan-focused shipping aggregator platform from the ground up.',
-      'Integrated multiple courier APIs (Leopards, TCS, Call Courier) into a unified dashboard.',
-      'Implemented real-time order tracking, automated label generation, and Stripe-based payouts.',
+      'Built a subscription management Shopify app embedded directly in the merchant admin using App Bridge and Polaris.',
+      'Implemented recurring billing flows on top of the Shopify Subscriptions and Billing APIs with retry and dunning logic.',
+      'Designed merchant-facing analytics for MRR, churn, and active subscribers with webhook-driven real-time updates.',
     ],
   },
   {
@@ -65,20 +65,32 @@ export default function Experience() {
         <div className={styles.layout}>
 
           {/* Sidebar */}
-          <ul className={styles.sidebar}>
+          <div className={styles.sidebar} role="tablist" aria-label="Work experience">
             {jobs.map((j, i) => (
-              <li
+              <button
                 key={j.company}
+                role="tab"
+                type="button"
+                id={`exp-tab-${i}`}
+                aria-selected={i === active}
+                aria-controls={`exp-panel-${i}`}
+                tabIndex={i === active ? 0 : -1}
                 className={`${styles.tab} ${i === active ? styles.activeTab : ''}`}
                 onClick={() => setActive(i)}
               >
                 {j.company}
-              </li>
+              </button>
             ))}
-          </ul>
+          </div>
 
           {/* Detail panel */}
-          <div className={styles.panel} key={active}>
+          <div
+            className={styles.panel}
+            key={active}
+            role="tabpanel"
+            id={`exp-panel-${active}`}
+            aria-labelledby={`exp-tab-${active}`}
+          >
             <h3 className={styles.role}>{job.role}</h3>
             <p className={styles.period}>{job.period}</p>
             <ul className={styles.bullets}>
